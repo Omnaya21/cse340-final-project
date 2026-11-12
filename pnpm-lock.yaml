@@ -1,0 +1,31 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      node:
+        specifier: ^26.13.1
+        version: 26.13.1
+
+packages:
+
+  node-bin-setup@1.1.4:
+    resolution: {integrity: sha512-vWNHOne0ZUavArqPP5LJta50+S8R261Fr5SvGul37HbEDcowvLjwdvd0ZeSr0r2lTSrPxl6okq9QUw8BFGiAxA==}
+
+  node@26.13.1:
+    resolution: {integrity: sha512-PPirIyoMVCkAK3m443GBwn9RVk51yTbjTs9xnqDW4Ox1B+laMLK2uSzp4qpOoVCYrRcxSbRDF159V0AHMU1c/g==}
+    engines: {npm: '>=5.0.0'}
+    hasBin: true
+
+snapshots:
+
+  node-bin-setup@1.1.4: {}
+
+  node@26.13.1:
+    dependencies:
+      node-bin-setup: 1.1.4
