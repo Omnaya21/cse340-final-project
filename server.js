@@ -6,7 +6,7 @@ const app = express();
 
 // Define a route handler for the root URL ('/')
 app.get('/', (req, res) => {
-    res.send('Used Cars Dealership Site!');
+    res.send('Used Cars Dealership!');
 });
 
 // Define the port number the server will listen on

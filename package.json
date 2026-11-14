@@ -1,14 +1,20 @@
 {
-	"packageManager": "pnpm@10.30.0",
-	"dependencies": {
-		"express": "^5.3.0",
-		"node": "^26.13.1"
-	},
-	"devDependencies": {
-		"nodemon": "^3.1.14"
-	},
-	"scripts": {
-        "dev": "nodemon --env-file=.env server.js",
-        "start": "node server.js"
-    }
+  "name": "cse340 Final Project",
+  "version": "1.0.0",
+  "description": "Used Cars Dealership",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Omar Navarro",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
