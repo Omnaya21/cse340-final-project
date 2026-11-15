@@ -9,8 +9,9 @@ app.get('/', (req, res) => {
     res.send('Used Cars Dealership!');
 });
 
+const NODE_ENV = process.env.NODE_ENV || 'production';
 // Define the port number the server will listen on
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
