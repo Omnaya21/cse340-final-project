@@ -6,6 +6,16 @@ import connectPgSimple from "connect-pg-simple";
 
 import publicRoutes from "./src/routes/publicRoutes.js";
 
+/**
+ * Server configuration
+ */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+/**
+ * Setup Express Server
+ */
 const app = express();
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 

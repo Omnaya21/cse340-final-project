@@ -1,8 +1,9 @@
+<div class="topline"><strong>Good cars. Good people.</strong> &nbsp; Thoughtfully inspected cars, honestly priced.</div>
 <header class="site-header">
-  <a class="brand" href="/">Northstar Motors</a>
+  <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">✦</span>Northstar Motors</a>
   <nav aria-label="Main navigation">
-    <a href="/vehicles">Browse vehicles</a>
-    <a href="/contact">Contact</a>
+    <a href="/vehicles">Inventory</a>
+    <a href="/contact">About &amp; contact</a>
     <% if (typeof currentUser !== 'undefined' && currentUser) { %>
       <% if (currentUser.role === 'customer') { %><a href="/account">My account</a><% } %>
       <% if (currentUser.role === 'employee' || currentUser.role === 'owner') { %>
@@ -17,7 +18,7 @@
       </form>
     <% } else { %>
       <a href="/auth/login">Sign in</a>
-      <a href="/auth/register">Create account</a>
+      <a class="button" href="/auth/register">Create account <span aria-hidden="true">↗</span></a>
     <% } %>
   </nav>
 </header>
