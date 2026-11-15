@@ -1,13 +1,5 @@
-// Import express using ESM syntax
-import express from 'express';
-
-// Create an instance of an Express application
-const app = express();
-
-// Define a route handler for the root URL ('/')
-app.get('/', (req, res) => {
-    res.send('Used Cars Dealership!');
-});
+import 'dotenv/config';
+import app from './app.js';
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
 // Define the port number the server will listen on

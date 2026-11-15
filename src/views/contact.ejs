@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: 'Contact us' }) %>
+<%- include('partials/header') %>
+<main>
+  <h1>Contact us</h1>
+  <% if (success) { %><p class="success" role="status"><%= success %></p><% } %>
+  <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <form action="/contact" method="post">
+    <%- include('partials/csrf') %>
+    <label for="name">Name</label>
+    <input id="name" name="name" autocomplete="name" required value="<%= formData?.name || currentUser?.full_name || '' %>">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required value="<%= formData?.email || currentUser?.email || '' %>">
+    <label for="subject">Subject</label>
+    <input id="subject" name="subject" maxlength="160" required value="<%= formData?.subject || '' %>">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="6" required><%= formData?.message || '' %></textarea>
+    <button type="submit">Send message</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

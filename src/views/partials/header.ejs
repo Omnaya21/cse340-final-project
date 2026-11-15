@@ -1,0 +1,23 @@
+<header class="site-header">
+  <a class="brand" href="/">Northstar Motors</a>
+  <nav aria-label="Main navigation">
+    <a href="/vehicles">Browse vehicles</a>
+    <a href="/contact">Contact</a>
+    <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+      <% if (currentUser.role === 'customer') { %><a href="/account">My account</a><% } %>
+      <% if (currentUser.role === 'employee' || currentUser.role === 'owner') { %>
+        <a href="/employee">Employee dashboard</a>
+      <% } %>
+      <% if (currentUser.role === 'owner') { %>
+        <a href="/owner">Owner dashboard</a>
+      <% } %>
+      <form action="/auth/logout" method="post" class="inline-form">
+        <%- include('csrf') %>
+        <button type="submit">Sign out</button>
+      </form>
+    <% } else { %>
+      <a href="/auth/login">Sign in</a>
+      <a href="/auth/register">Create account</a>
+    <% } %>
+  </nav>
+</header>

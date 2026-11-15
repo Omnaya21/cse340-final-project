@@ -1,0 +1,33 @@
+<%- include('partials/head', { title: 'Find your next vehicle' }) %>
+<%- include('partials/header') %>
+<main>
+  
+  <section class="hero">
+    <p class="eyebrow">Used vehicles, chosen with care</p>
+    <h1>Find your next great drive.</h1>
+    <p>Browse our current inventory and get in touch with our team.</p>
+    <a class="button" href="/vehicles">Browse inventory</a>
+  </section>
+  
+  <section aria-labelledby="featured-heading">
+    <h2 id="featured-heading">Featured vehicles</h2>
+    <% if (featuredVehicles && featuredVehicles.length) { %>
+      <div class="vehicle-grid">
+        <% featuredVehicles.forEach((vehicle) => { %>
+          <article class="vehicle-card">
+            <% if (vehicle.image_url) { %>
+              <img src="<%= vehicle.image_url %>" alt="<%= vehicle.image_alt || `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` %>">
+            <% } %>
+            <h3><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></a></h3>
+            <p><%= vehicle.mileage.toLocaleString() %> miles</p>
+            <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p>No featured vehicles are available right now. <a href="/vehicles">Browse all inventory</a>.</p>
+    <% } %>
+  </section>
+
+</main>
+<%- include('partials/footer') %>

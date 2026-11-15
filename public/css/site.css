@@ -1,0 +1,57 @@
+:root {
+  color: #17202a;
+  background: #f7f8fa;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+* { 
+  box-sizing: border-box; 
+
+}
+
+body { 
+  margin: 0; 
+}
+
+a { 
+  color: #125b8c; 
+}
+
+.site-header, .site-footer { 
+  padding: 1rem max(1rem, calc((100% - 72rem) / 2)); 
+  background: #102a43; 
+  color: white; 
+}
+
+.site-header { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 1rem; 
+  flex-wrap: wrap; 
+}
+.site-header a { color: white; }
+.brand { font-size: 1.25rem; font-weight: 750; text-decoration: none; }
+.site-header nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+main { width: min(72rem, calc(100% - 2rem)); margin: 2rem auto 4rem; }
+.hero { padding: clamp(2rem, 6vw, 5rem); background: #e5edf3; border-radius: 1rem; margin-bottom: 3rem; }
+.hero h1 { max-width: 14ch; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.05; margin: .25rem 0 1rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; font-weight: 700; }
+.vehicle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1.25rem; }
+.vehicle-card, .review, .vehicle-detail, main > form { padding: 1.25rem; background: white; border: 1px solid #d8e0e8; border-radius: .75rem; }
+.vehicle-card img, .vehicle-gallery img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: .5rem; }
+.price { font-size: 1.25rem; font-weight: 750; }
+.button, button { display: inline-block; border: 0; border-radius: .4rem; padding: .65rem 1rem; color: white; background: #125b8c; font: inherit; text-decoration: none; cursor: pointer; }
+form { display: grid; gap: .65rem; margin: 1rem 0; }
+form.inline-form { display: inline; }
+input, select, textarea { max-width: 100%; padding: .6rem; border: 1px solid #829ab1; border-radius: .35rem; font: inherit; }
+textarea { width: 100%; }
+table { width: 100%; border-collapse: collapse; background: white; }
+th, td { border-bottom: 1px solid #d8e0e8; padding: .7rem; text-align: left; vertical-align: top; }
+.vehicle-specs { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1rem; }
+.vehicle-specs dt { font-weight: 700; }
+.form-error { color: #9b1c1c; }
+.success { color: #176b3a; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 42rem) { .site-header { align-items: flex-start; } .site-header nav { gap: .65rem; } table { font-size: .9rem; } }
