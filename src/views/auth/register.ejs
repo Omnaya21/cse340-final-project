@@ -1,0 +1,17 @@
+<%- include('../partials/head', { title: 'Create account' }) %>
+<%- include('../partials/header') %>
+<main>
+  <h1>Create a customer account</h1>
+  <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <form action="/auth/register" method="post">
+    <%- include('../partials/csrf') %>
+    <label for="full_name">Full name</label>
+    <input id="full_name" name="full_name" autocomplete="name" required value="<%= formData?.full_name || '' %>">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required value="<%= formData?.email || '' %>">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+    <button type="submit">Create account</button>
+  </form>
+</main>
+<%- include('../partials/footer') %>
