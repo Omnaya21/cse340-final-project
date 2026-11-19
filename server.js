@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import app from './app.js';
 
+
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
 const PORT = process.env.PORT || 3000;
 

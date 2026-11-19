@@ -4,7 +4,9 @@
   <h1>Create a customer account</h1>
   <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
   <form action="/auth/register" method="post">
-    <%- include('../partials/csrf') %>
+    <!--
+    < % - include('../partials/csrf') %>
+  -->
     <label for="full_name">Full name</label>
     <input id="full_name" name="full_name" autocomplete="name" required value="<%= formData?.full_name || '' %>">
     <label for="email">Email</label>

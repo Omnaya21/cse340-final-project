@@ -34,7 +34,8 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
-app.set("views", path.join(currentDirectory, "./src/views"));
+app.set("views", path.join(currentDirectory, "/src/views"));
+console.log(`Views directory set to: ${app.get("views")}`);
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }

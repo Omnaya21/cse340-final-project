@@ -55,7 +55,7 @@ export async function register(req, res) {
 }
 
 
-export function showLogin(req, res) {
+export async function showLogin(req, res) {
   if (req.session.user) 
     return res.redirect('/');
   renderLogin(res, { 
