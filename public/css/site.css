@@ -27,7 +27,16 @@ button { cursor: pointer; }
 .topline strong { color: var(--lime); }
 .site-header { min-height: 78px; padding: 12px max(24px, calc((100% - 1160px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: rgba(247,246,242,.96); border-bottom: 1px solid rgba(24,37,30,.07); position: relative; z-index: 5; }
 .brand { display: inline-flex; align-items: center; gap: 11px; font: 800 18px/1.2 "Manrope", sans-serif; letter-spacing: -.055em; white-space: nowrap; }
-.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; background: var(--green); color: var(--lime); font-size: 20px; }
+.brand-mark { 
+    width: 34px; 
+    height: 34px; 
+    display: grid; 
+    place-items: center; 
+    border-radius: 11px; 
+    background: var(--green); 
+    color: var(--lime); 
+    font-size: 20px; 
+}
 .site-header nav { display: flex; align-items: center; justify-content: flex-end; gap: 22px; flex-wrap: wrap; color: #46534b; font-size: 13px; font-weight: 600; }
 .site-header nav a:hover, .site-footer a:hover { color: var(--green); }
 .site-header nav .button { color: white; }
