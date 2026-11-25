@@ -1,0 +1,40 @@
+<%- include('../partials/head', { title: 'Browse vehicles' }) %>
+<%- include('../partials/header') %>
+<main>
+  <h1>Browse vehicles</h1>
+  <form action="/vehicles" method="get" class="filter-form">
+    <label for="category">Category</label>
+    <select id="category" name="category">
+      <option value="">All categories</option>
+      <% categories.forEach((category) => { %>
+        <option value="<%= category.slug %>" <%= selectedCategory === category.slug ? 'selected' : '' %>><%= category.name %></option>
+      <% }) %>
+    </select>
+    <label for="sort">Sort by</label>
+    <select id="sort" name="sort">
+      <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>Newest</option>
+      <option value="price-asc" <%= sort === 'price-asc' ? 'selected' : '' %>>Price: low to high</option>
+      <option value="price-desc" <%= sort === 'price-desc' ? 'selected' : '' %>>Price: high to low</option>
+    </select>
+    <button type="submit">Apply filters</button>
+  </form>
+
+  <% if (vehicles.length) { %>
+    <div class="vehicle-grid">
+      <% vehicles.forEach((vehicle) => { %>
+        <article class="vehicle-card">
+          <% if (vehicle.image_url) { %>
+            <img src="<%= vehicle.image_url %>" alt="<%= vehicle.image_alt || `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` %>">
+          <% } %>
+          <p class="eyebrow"><%= vehicle.category_name %></p>
+          <h2><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></a></h2>
+          <p><%= vehicle.mileage.toLocaleString() %> miles · <%= vehicle.transmission || 'Transmission details available' %></p>
+          <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No vehicles match those filters. Try choosing a different category or sort order.</p>
+  <% } %>
+</main>
+<%- include('../partials/footer') %>

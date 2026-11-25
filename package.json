@@ -15,7 +15,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --env-file=.env server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed:owner": "node src/scripts/seedOwner.js",
+    "seed:demo": "node src/scripts/seedDemoData.js"
   },
   "keywords": [],
   "author": "Omar Navarro",

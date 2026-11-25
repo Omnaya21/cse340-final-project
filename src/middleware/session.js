@@ -1,6 +1,6 @@
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
-import pool from '../db/pool.js';
+import pool from '../models/db/pool.js';
 
 const sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret || sessionSecret.length < 32) {

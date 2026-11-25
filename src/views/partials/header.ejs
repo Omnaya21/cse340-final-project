@@ -8,7 +8,7 @@
   <nav aria-label="Main navigation">
     <a href="/vehicles">Inventory</a>
     <a href="/contact">About &amp; contact</a>
-    <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+    <% if (typeof currentUser !== 'undefined' && currentUser.id) { %>
       <% if (currentUser.role === 'customer') { %><a href="/account">My account</a><% } %>
       <% if (currentUser.role === 'employee' || currentUser.role === 'owner') { %>
         <a href="/employee">Employee dashboard</a>

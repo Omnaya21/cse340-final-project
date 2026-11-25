@@ -1,0 +1,57 @@
+<%- include('../partials/head', { title: `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` }) %>
+<%- include('../partials/header') %>
+<main>
+  <nav aria-label="Breadcrumb"><a href="/vehicles">Vehicles</a> / <%= vehicle.category_name %></nav>
+  <article class="vehicle-detail">
+    <h1><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></h1>
+    <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+    <p><%= vehicle.is_available ? 'Available' : 'Currently unavailable' %></p>
+    <div class="vehicle-gallery">
+      <% images.forEach((image) => { %>
+        <img src="<%= image.image_url %>" alt="<%= image.alt_text || `${vehicle.make} ${vehicle.model}` %>">
+      <% }) %>
+    </div>
+    <dl class="vehicle-specs">
+      <dt>Category</dt><dd><%= vehicle.category_name %></dd>
+      <dt>Mileage</dt><dd><%= vehicle.mileage.toLocaleString() %> miles</dd>
+      <dt>Transmission</dt><dd><%= vehicle.transmission || 'Not listed' %></dd>
+      <dt>Fuel</dt><dd><%= vehicle.fuel_type || 'Not listed' %></dd>
+      <dt>Exterior</dt><dd><%= vehicle.exterior_color || 'Not listed' %></dd>
+      <dt>Interior</dt><dd><%= vehicle.interior_color || 'Not listed' %></dd>
+    </dl>
+    <h2>About this vehicle</h2>
+    <p><%= vehicle.description %></p>
+  </article>
+
+  <section aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading">Customer reviews</h2>
+    <% if (reviews.length) { %>
+      <% reviews.forEach((review) => { %>
+        <article class="review">
+          <h3><%= review.title || 'Vehicle review' %></h3>
+          <p><%= review.rating %> out of 5 · <%= review.reviewer_name %></p>
+          <p><%= review.body %></p>
+          <% if (currentUser && currentUser.id === review.user_id) { %>
+            <a href="/account/reviews/<%= review.id %>/edit">Edit your review</a>
+            <form action="/account/reviews/<%= review.id %>/delete" method="post" class="inline-form">
+              <%- include('../partials/csrf') %>
+              <button type="submit">Delete your review</button>
+            </form>
+          <% } %>
+        </article>
+      <% }) %>
+    <% } else { %>
+      <p>No reviews yet.</p>
+    <% } %>
+    <% if (currentUser && currentUser.role === 'customer') { %>
+      <% if (reviews.some((review) => String(review.user_id) === String(currentUser.id))) { %>
+        <p>You have reviewed this vehicle. Use the edit link with your review to make changes.</p>
+      <% } else { %>
+        <a href="/vehicles/<%= vehicle.id %>/reviews/new">Write a review</a>
+      <% } %>
+    <% } else if (!currentUser) { %>
+      <p><a href="/auth/login">Sign in</a> to leave a review.</p>
+    <% } %>
+  </section>
+</main>
+<%- include('../partials/footer') %>
