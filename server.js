@@ -27,7 +27,8 @@ if (NODE_ENV.includes('dev')) {
     }
 }
 
-app.set('trust proxy', NODE_ENV === 'production'); //('trust proxy', true);
+//app.set('trust proxy', NODE_ENV === 'production'); //('trust proxy', true);
+app.set('trust proxy', 1); // trust first proxy so we can view it on render
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
     console.log(NODE_ENV === 'production' ? 'Server is running in production mode.' : 'Server is running in development mode.');

@@ -3,16 +3,15 @@ import { randomBytes } from 'crypto';
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function renderContact(res, { success = '', error = '', formData = {}, currentUser = {}, status = 200, csrfToken } = {}) {
+function renderContact(res, { success = '', error = '', formData = {}, status = 200, csrfToken } = {}) {
   return res.status(status).render('contact', { 
-    title: 'Contact us', csrfToken, success, error, formData, currentUser });
+    title: 'Contact us', csrfToken, success, error, formData });
 }
 
 export function showContact(req, res) {
   req.session.csrfToken = randomBytes(32).toString('hex');
   renderContact(res, { 
     success: req.query.sent === '1' ? 'Your message was received. Our team will follow up.' : '',
-    currentUser: res.locals.currentUser || {},
     csrfToken: req.session.csrfToken
   });
 }

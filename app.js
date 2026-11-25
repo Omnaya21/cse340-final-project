@@ -2,7 +2,12 @@ import 'dotenv/config';
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import session from "express-session";
+import { sessionMiddleware } from "./src/middleware/session.js";
+import {issueCsrfToken } from "./src/middleware/csrf.js";
+import { loadCurrentUser } from "./src/middleware/currentUser.js";
+//import session from "express-session";
+import authRoutes from "./src/routes/authRoutes.js";
+import publicRoutes from "./src/routes/publicRoutes.js";
 import connectPgSimple from "connect-pg-simple";
 
 
@@ -10,8 +15,6 @@ import connectPgSimple from "connect-pg-simple";
 import { addLocalVariables } from './src/middleware/global.js';
 
 
-import publicRoutes from "./src/routes/publicRoutes.js";
-import authRoutes from "./src/routes/authRoutes.js";
 
 /**
  * Server configuration
@@ -26,11 +29,16 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const currentDirectory = __dirname;
 
+app.use(sessionMiddleware);
+app.use(issueCsrfToken);
+app.use(loadCurrentUser);
+/*
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
+*/
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");

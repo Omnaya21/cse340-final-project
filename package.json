@@ -17,7 +17,8 @@
     "dev": "nodemon --env-file=.env server.js",
     "start": "node server.js",
     "seed:owner": "node src/scripts/seedOwner.js",
-    "seed:demo": "node src/scripts/seedDemoData.js"
+    "seed:demo": "node src/scripts/seedDemoData.js",
+    "seed:vehicles": "node src/scripts/seedVehicles.js"
   },
   "keywords": [],
   "author": "Omar Navarro",
