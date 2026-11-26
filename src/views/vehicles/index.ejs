@@ -23,13 +23,15 @@
     <div class="vehicle-grid">
       <% vehicles.forEach((vehicle) => { %>
         <article class="vehicle-card">
-          <% if (vehicle.image_url) { %>
-            <img src="<%= vehicle.image_url %>" alt="<%= vehicle.image_alt || `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` %>">
-          <% } %>
-          <p class="eyebrow"><%= vehicle.category_name %></p>
-          <h2><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></a></h2>
-          <p><%= vehicle.mileage.toLocaleString() %> miles · <%= vehicle.transmission || 'Transmission details available' %></p>
-          <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+          <a href="/vehicles/<%= vehicle.id %>">
+            <% if (vehicle.image_url) { %>
+              <img src="<%= vehicle.image_url %>" alt="<%= vehicle.image_alt || `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` %>">
+            <% } %>
+            <p class="eyebrow"><%= vehicle.category_name %></p>
+            <h2><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></h2>
+            <p><%= vehicle.mileage.toLocaleString() %> miles · <%= vehicle.transmission || 'Transmission details available' %></p>
+            <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
+          </a>
         </article>
       <% }) %>
     </div>

@@ -33,13 +33,15 @@
       <div class="vehicle-grid">
         <% featuredVehicles.forEach((vehicle, index) => { %>
           <article class="vehicle-card">
+            <a href="/vehicles/<%= vehicle.id %>">
             <img src="<%= vehicle.image_url || featuredImageFallbacks[index % featuredImageFallbacks.length] %>" alt="<%= vehicle.image_alt || `${vehicle.model_year} ${vehicle.make} ${vehicle.model}` %>" loading="lazy">
             <div class="vehicle-card-body">
               <p class="eyebrow"><%= vehicle.category_name || 'Carefully selected' %></p>
-              <h3><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></a></h3>
+              <h3><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></h3>
               <p class="price"><%= Number(vehicle.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></p>
               <p class="vehicle-meta"><%= vehicle.mileage.toLocaleString() %> miles · <%= vehicle.transmission || 'Details available' %></p>
             </div>
+            </a>
           </article>
         <% }) %>
       </div>

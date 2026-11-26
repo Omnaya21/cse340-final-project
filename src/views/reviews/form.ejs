@@ -1,0 +1,22 @@
+<%- include('../partials/head', { title: review ? 'Edit review' : 'Write a review' }) %>
+<%- include('../partials/header') %>
+<main>
+  <p><a href="/vehicles/<%= vehicle.id %>">Back to vehicle</a></p>
+  <h1><%= review ? 'Edit your review' : 'Write a review' %></h1>
+  <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <form action="<%= formAction %>" method="post">
+    <%- include('../partials/csrf') %>
+    <label for="rating">Rating</label>
+    <select id="rating" name="rating" required>
+      <% [5, 4, 3, 2, 1].forEach((rating) => { %>
+        <option value="<%= rating %>" <%= Number(review?.rating || formData?.rating || 5) === rating ? 'selected' : '' %>><%= rating %> out of 5</option>
+      <% }) %>
+    </select>
+    <label for="title">Review title</label>
+    <input id="title" name="title" maxlength="120" value="<%= formData?.title ?? review?.title ?? '' %>">
+    <label for="body">Your review</label>
+    <textarea id="body" name="body" rows="6" required><%= formData?.body ?? review?.body ?? '' %></textarea>
+    <button type="submit"><%= review ? 'Save changes' : 'Post review' %></button>
+  </form>
+</main>
+<%- include('../partials/footer') %>
