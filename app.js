@@ -7,6 +7,7 @@ import {issueCsrfToken } from "./src/middleware/csrf.js";
 import { loadCurrentUser } from "./src/middleware/currentUser.js";
 //import session from "express-session";
 import authRoutes from "./src/routes/authRoutes.js";
+import accountRoutes from "./src/routes/accountRoutes.js";
 import publicRoutes from "./src/routes/publicRoutes.js";
 import connectPgSimple from "connect-pg-simple";
 
@@ -56,6 +57,7 @@ app.use(express.static(path.join(currentDirectory, "public")));
 
 app.use("/", publicRoutes);
 app.use("/auth", authRoutes);
+app.use("/account", accountRoutes);
 
 /**
  * Error Handling

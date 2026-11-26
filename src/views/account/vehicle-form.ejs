@@ -1,0 +1,18 @@
+<%- include('../partials/head', { title: 'Add my vehicle' }) %>
+<%- include('../partials/header') %>
+<main>
+  <p><a href="/account/vehicles">Back to my vehicles</a></p>
+  <h1>Add a vehicle</h1>
+  <p>Register a car you own to request service and see its service history.</p>
+  <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <form action="/account/vehicles" method="post">
+    <%- include('../partials/csrf') %>
+    <label for="make">Make</label><input id="make" name="make" maxlength="80" required value="<%= formData?.make || '' %>">
+    <label for="model">Model</label><input id="model" name="model" maxlength="100" required value="<%= formData?.model || '' %>">
+    <label for="model_year">Year</label><input id="model_year" name="model_year" type="number" min="1886" max="2100" required value="<%= formData?.model_year || '' %>">
+    <label for="mileage">Mileage</label><input id="mileage" name="mileage" type="number" min="0" required value="<%= formData?.mileage || '' %>">
+    <label for="vin">VIN (optional)</label><input id="vin" name="vin" maxlength="17" value="<%= formData?.vin || '' %>">
+    <button type="submit">Save vehicle</button>
+  </form>
+</main>
+<%- include('../partials/footer') %>

@@ -1,0 +1,13 @@
+<%- include('../partials/head', { title: 'My vehicles' }) %>
+<%- include('../partials/header') %>
+<main>
+  <p><a href="/account">Back to my account</a></p>
+  <h1>My vehicles</h1>
+  <p><a class="button" href="/account/vehicles/new">Add a vehicle</a></p>
+  <% if (vehicles.length) { %>
+    <ul><% vehicles.forEach((vehicle) => { %>
+      <li><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %> — <%= vehicle.mileage.toLocaleString() %> miles</li>
+    <% }) %></ul>
+  <% } else { %><p>No vehicles are registered yet.</p><% } %>
+</main>
+<%- include('../partials/footer') %>

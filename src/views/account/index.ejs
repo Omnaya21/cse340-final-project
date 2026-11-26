@@ -1,0 +1,18 @@
+<%- include('../partials/head', { title: 'My account' }) %>
+<%- include('../partials/header') %>
+<main>
+  <h1>Welcome, <%= currentUser.full_name %></h1>
+  <p><a href="/account/vehicles">Manage your vehicles</a> · <a class="button" href="/account/vehicles/new">Add a vehicle</a></p>
+  <section>
+    <h2>Your service requests</h2>
+    <% if (serviceRequests.length) { %>
+      <ul>
+        <% serviceRequests.forEach((request) => { %>
+          <li><a href="/account/service-requests/<%= request.id %>"><%= request.service_type %> for <%= request.vehicle_label %></a> — <%= request.status %></li>
+        <% }) %>
+      </ul>
+    <% } else { %><p>You have not submitted a service request yet.</p><% } %>
+    <% if (serviceRequests.length) { %><a class="button" href="/account/service-requests/new">Request service</a><% } else { %><p><a href="/account/vehicles/new">Add your vehicle</a> to submit a service request.</p><% } %>
+  </section>
+</main>
+<%- include('../partials/footer') %>

@@ -1,0 +1,22 @@
+<%- include('../partials/head', { title: `Service request #${serviceRequest.id}` }) %>
+<%- include('../partials/header') %>
+<main>
+  <p><a href="/account">Back to my account</a></p>
+  <h1>Service request #<%= serviceRequest.id %></h1>
+  <p><strong>Status:</strong> <%= serviceRequest.status %></p>
+  <p><strong>Vehicle:</strong> <%= serviceRequest.vehicle_label %></p>
+  <p><strong>Service:</strong> <%= serviceRequest.service_type %></p>
+  <p><strong>Request details:</strong> <%= serviceRequest.description %></p>
+  <h2>Request history</h2>
+  <% if (updates.length) { %>
+    <ol class="history-list">
+      <% updates.forEach((update) => { %>
+        <li>
+          <p><strong><%= update.status %></strong> · <time datetime="<%= update.created_at.toISOString() %>"><%= update.created_at.toLocaleString() %></time></p>
+          <% if (update.note) { %><p><%= update.note %></p><% } %>
+        </li>
+      <% }) %>
+    </ol>
+  <% } else { %><p>No updates have been added.</p><% } %>
+</main>
+<%- include('../partials/footer') %>

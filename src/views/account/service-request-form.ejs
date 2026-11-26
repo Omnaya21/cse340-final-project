@@ -1,0 +1,31 @@
+<%- include('../partials/head', { title: 'Request service' }) %>
+<%- include('../partials/header') %>
+<main>
+  <h1>Request service</h1>
+  <% if (error) { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <% if (!customerVehicles.length) { %>
+    <p>You need to register a vehicle before requesting service. <a href="/account/vehicles/new">Add your vehicle</a>.</p>
+  <% } else { %>
+  <form action="/account/service-requests" method="post">
+    <%- include('../partials/csrf') %>
+    <label for="customer_vehicle_id">Your vehicle</label>
+    <select id="customer_vehicle_id" name="customer_vehicle_id" required>
+      <option value="">Choose a vehicle</option>
+      <% customerVehicles.forEach((vehicle) => { %>
+        <option value="<%= vehicle.id %>" <%= formData?.customer_vehicle_id == vehicle.id ? 'selected' : '' %>><%= vehicle.model_year %> <%= vehicle.make %> <%= vehicle.model %></option>
+      <% }) %>
+    </select>
+    <label for="service_type">Service needed</label>
+    <select id="service_type" name="service_type" required>
+      <option value="">Choose a service</option>
+      <% ['Oil change', 'Inspection', 'Tire service', 'Brake service', 'Other'].forEach((service) => { %>
+        <option value="<%= service %>" <%= formData?.service_type === service ? 'selected' : '' %>><%= service %></option>
+      <% }) %>
+    </select>
+    <label for="description">Details</label>
+    <textarea id="description" name="description" rows="5" required><%= formData?.description || '' %></textarea>
+    <button type="submit">Submit request</button>
+  </form>
+  <% } %>
+</main>
+<%- include('../partials/footer') %>
